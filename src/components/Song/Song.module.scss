@@ -5,3 +5,28 @@
   justify-content: center;
   align-items: center;
 }
+
+.song__cover {
+  width: 20%;
+  margin-bottom: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.song__name {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.song__artist {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
