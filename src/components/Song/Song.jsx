@@ -1,6 +1,9 @@
+import s from "./Song.module.scss";
+
 export const Song = () => (
-  <div className="song">
-    <h1>Song</h1>
-    <h1>Artist</h1>
+  <div className={s.song}>
+    <div className="img">Picture</div>
+    <p>Song</p>
+    <p>Artist</p>
   </div>
 );
