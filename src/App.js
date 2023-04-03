@@ -10,10 +10,11 @@ import "./app.scss";
 export const App = () => {
   const [songs, setSong] = useState(() => chillHop());
   const [currentSong, setCurrentSong] = useState(songs[2]);
+  const [isPlay, setIsPlay] = useState(false);
   return (
     <div className="App">
       <Song currentSong={currentSong} />
-      <Player />
+      <Player currentSong={currentSong} isPlay={isPlay} setIsPlay={setIsPlay} />
     </div>
   );
 };
