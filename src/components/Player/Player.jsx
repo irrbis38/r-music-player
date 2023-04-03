@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { ButtonPrev } from "../Buttons/ButtonPrev";
 import { ButtonPlay } from "../Buttons/ButtonPlay";
@@ -8,7 +8,13 @@ import { ButtonNext } from "../Buttons/ButtonNext";
 import s from "./Player.module.scss";
 
 export const Player = ({ currentSong, isPlay, setIsPlay }) => {
+  const [songInfo, setSongInfo] = useState({
+    currentTime: null,
+    duration: null,
+  });
+
   const audioRef = useRef(null);
+
   const playHandler = () => {
     if (isPlay) {
       audioRef.current.pause();
@@ -18,12 +24,22 @@ export const Player = ({ currentSong, isPlay, setIsPlay }) => {
       setIsPlay(!isPlay);
     }
   };
+
+  const getTime = (time) =>
+    Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2);
+
+  const onTimeUpdateHandler = (e) => {
+    const currentTime = e.target.currentTime;
+    const duration = e.target.duration;
+    setSongInfo({ ...songInfo, currentTime, duration });
+  };
+
   return (
     <div>
       <div className={s.player__time}>
-        <p>Start time</p>
+        <p>{getTime(songInfo.currentTime)}</p>
         <input type="range" className={s.player__range} />
-        <p>End time</p>
+        <p>{getTime(songInfo.duration)}</p>
       </div>
       <div className={s.player__control}>
         <ButtonPrev />
@@ -34,7 +50,12 @@ export const Player = ({ currentSong, isPlay, setIsPlay }) => {
         )}
         <ButtonNext />
       </div>
-      <audio src={currentSong.audio} ref={audioRef}></audio>
+      <audio
+        onTimeUpdate={onTimeUpdateHandler}
+        onLoadedMetadata={onTimeUpdateHandler}
+        src={currentSong.audio}
+        ref={audioRef}
+      ></audio>
     </div>
   );
 };
