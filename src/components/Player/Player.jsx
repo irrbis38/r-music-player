@@ -9,8 +9,8 @@ import s from "./Player.module.scss";
 
 export const Player = ({ currentSong, isPlay, setIsPlay }) => {
   const [songInfo, setSongInfo] = useState({
-    currentTime: null,
-    duration: null,
+    currentTime: 0,
+    duration: 0,
   });
 
   const audioRef = useRef(null);
@@ -35,9 +35,7 @@ export const Player = ({ currentSong, isPlay, setIsPlay }) => {
   };
 
   const dragHandler = (e) => {
-    // e.currentTarget
     setSongInfo({ ...songInfo, currentTime: e.target.value });
-    // console.log(audioRef.current.currentTime);
     audioRef.current.currentTime = e.target.value;
   };
 
@@ -49,7 +47,7 @@ export const Player = ({ currentSong, isPlay, setIsPlay }) => {
           onChange={dragHandler}
           min={0}
           max={songInfo.duration}
-          value={songInfo.currentTime === null ? 0 : songInfo.currentTime}
+          value={songInfo.currentTime}
           type="range"
           className={s.player__range}
         />
