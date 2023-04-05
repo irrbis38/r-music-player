@@ -6,8 +6,10 @@ export const LibrarySong = ({ song }) => {
       <div className={s.librarySong__cover}>
         <img src={song.cover} alt={song.name} />
       </div>
-      <p className={s.librarySong__name}>{song.name}</p>
-      <p className={s.librarySong__artist}>{song.artist}</p>
+      <div className={s.librarySong__description}>
+        <p className={s.librarySong__name}>{song.name}</p>
+        <p className={s.librarySong__artist}>{song.artist}</p>
+      </div>
     </div>
   );
 };

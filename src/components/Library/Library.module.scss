@@ -1,0 +1,24 @@
+.library {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+
+  background-color: lightcyan;
+  box-shadow: 2px 2px 50px rgb(204, 204, 204);
+  overflow-y: scroll;
+}
+
+.library__title {
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.library__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem 0;
+  padding: 1rem;
+}
