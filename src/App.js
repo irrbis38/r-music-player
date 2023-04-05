@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Player } from "./components/Player/Player";
 import { Song } from "./components/Song/Song";
+import { Library } from "./components/Library/Library";
 
 import chillHop from "./data";
 
@@ -15,6 +16,7 @@ export const App = () => {
     <div className="App">
       <Song currentSong={currentSong} />
       <Player currentSong={currentSong} isPlay={isPlay} setIsPlay={setIsPlay} />
+      <Library songs={songs} />
     </div>
   );
 };
