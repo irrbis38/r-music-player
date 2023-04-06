@@ -16,7 +16,7 @@ export const App = () => {
     <div className="App">
       <Song currentSong={currentSong} />
       <Player currentSong={currentSong} isPlay={isPlay} setIsPlay={setIsPlay} />
-      <Library songs={songs} />
+      <Library songs={songs} setCurrentSong={setCurrentSong} />
     </div>
   );
 };
