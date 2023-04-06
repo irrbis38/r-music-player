@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { ButtonPrev } from "../Buttons/ButtonPrev";
 import { ButtonPlay } from "../Buttons/ButtonPlay";
@@ -7,13 +7,11 @@ import { ButtonNext } from "../Buttons/ButtonNext";
 
 import s from "./Player.module.scss";
 
-export const Player = ({ currentSong, isPlay, setIsPlay }) => {
+export const Player = ({ currentSong, isPlay, setIsPlay, audioRef }) => {
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
   });
-
-  const audioRef = useRef(null);
 
   const playHandler = () => {
     if (isPlay) {

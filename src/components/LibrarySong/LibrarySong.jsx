@@ -1,9 +1,23 @@
 import s from "./LibrarySong.module.scss";
 
-export const LibrarySong = ({ song, songs, setCurrentSong }) => {
+export const LibrarySong = ({
+  song,
+  songs,
+  setCurrentSong,
+  audioRef,
+  isPlay,
+}) => {
   const setSongHandler = () => {
     const selectedSong = songs.filter((item) => song.id === item.id);
     setCurrentSong(...selectedSong);
+    if (isPlay) {
+      const playPromise = audioRef.current.play();
+      if (playPromise) {
+        playPromise.then(() => {
+          audioRef.current.play();
+        });
+      }
+    }
   };
   return (
     <div className={s.librarySong} onClick={setSongHandler}>

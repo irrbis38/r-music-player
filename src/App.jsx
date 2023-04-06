@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { Player } from "./components/Player/Player";
 import { Song } from "./components/Song/Song";
@@ -12,11 +12,22 @@ export const App = () => {
   const [songs, setSong] = useState(() => chillHop());
   const [currentSong, setCurrentSong] = useState(songs[2]);
   const [isPlay, setIsPlay] = useState(false);
+  const audioRef = useRef(null);
   return (
     <div className="App">
       <Song currentSong={currentSong} />
-      <Player currentSong={currentSong} isPlay={isPlay} setIsPlay={setIsPlay} />
-      <Library songs={songs} setCurrentSong={setCurrentSong} />
+      <Player
+        currentSong={currentSong}
+        isPlay={isPlay}
+        setIsPlay={setIsPlay}
+        audioRef={audioRef}
+      />
+      <Library
+        songs={songs}
+        setCurrentSong={setCurrentSong}
+        audioRef={audioRef}
+        isPlay={isPlay}
+      />
     </div>
   );
 };
