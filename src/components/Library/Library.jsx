@@ -8,9 +8,10 @@ export const Library = ({
   audioRef,
   isPlay,
   setSongs,
+  isLibraryVisible,
 }) => {
   return (
-    <div className={s.library}>
+    <div className={`${s.library} ${isLibraryVisible ? s.active : ""}`}>
       <h2 className={s.library__title}>Library</h2>
       <div className={s.library__wrapper}>
         {songs.map((song) => (

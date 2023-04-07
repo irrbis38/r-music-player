@@ -1,0 +1,38 @@
+.nav {
+  min-height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.nav__button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  svg {
+    display: block;
+    width: 12px;
+    height: auto;
+
+    path {
+      transition: all 0.2s ease-out;
+    }
+  }
+
+  &:hover {
+    color: white;
+    background-color: rgb(65, 65, 65);
+
+    path {
+      fill: white;
+    }
+  }
+}
