@@ -9,7 +9,7 @@ import chillHop from "./data";
 import "./app.scss";
 
 export const App = () => {
-  const [songs, setSong] = useState(() => chillHop());
+  const [songs, setSongs] = useState(() => chillHop());
   const [currentSong, setCurrentSong] = useState(songs[2]);
   const [isPlay, setIsPlay] = useState(false);
   const audioRef = useRef(null);
@@ -27,6 +27,7 @@ export const App = () => {
         setCurrentSong={setCurrentSong}
         audioRef={audioRef}
         isPlay={isPlay}
+        setSongs={setSongs}
       />
     </div>
   );

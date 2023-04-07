@@ -8,6 +8,10 @@
   &:hover {
     background-color: #d3e2f3;
   }
+
+  &.active {
+    background-color: #accff8;
+  }
 }
 
 .librarySong__cover {
