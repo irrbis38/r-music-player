@@ -44,12 +44,12 @@ export const Player = ({ currentSong, isPlay, setIsPlay, audioRef }) => {
         <input
           onChange={dragHandler}
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.currentTime}
           type="range"
           className={s.player__range}
         />
-        <p>{getTime(songInfo.duration)}</p>
+        <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
       <div className={s.player__control}>
         <ButtonPrev />
