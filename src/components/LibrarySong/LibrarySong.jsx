@@ -1,3 +1,4 @@
+import { playAudio } from "../../utils";
 import s from "./LibrarySong.module.scss";
 
 export const LibrarySong = ({
@@ -29,15 +30,8 @@ export const LibrarySong = ({
     });
     setSongs(newSongs);
 
-    // autoplay if isPlay ture
-    if (isPlay) {
-      const playPromise = audioRef.current.play();
-      if (playPromise) {
-        playPromise.then(() => {
-          audioRef.current.play();
-        });
-      }
-    }
+    // autoplay if isPlay true
+    playAudio(isPlay, audioRef);
   };
   return (
     <div

@@ -5,6 +5,8 @@ import { ButtonPlay } from "../Buttons/ButtonPlay";
 import { ButtonPause } from "../Buttons/ButtonPause";
 import { ButtonNext } from "../Buttons/ButtonNext";
 
+import { playAudio } from "../../utils";
+
 import s from "./Player.module.scss";
 
 export const Player = ({
@@ -56,6 +58,8 @@ export const Player = ({
         setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       }
     }
+    // autoplay if isPlay true
+    playAudio(isPlay, audioRef);
   };
 
   // set class active to selected song
