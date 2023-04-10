@@ -7,7 +7,14 @@ import { ButtonNext } from "../Buttons/ButtonNext";
 
 import s from "./Player.module.scss";
 
-export const Player = ({ currentSong, isPlay, setIsPlay, audioRef }) => {
+export const Player = ({
+  songs,
+  currentSong,
+  setCurrentSong,
+  isPlay,
+  setIsPlay,
+  audioRef,
+}) => {
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
@@ -37,6 +44,19 @@ export const Player = ({ currentSong, isPlay, setIsPlay, audioRef }) => {
     audioRef.current.currentTime = e.target.value;
   };
 
+  const skipSong = (direction) => {
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    if (direction === "skip-to-next") {
+      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    } else {
+      if ((currentIndex - 1) % songs.length < 0) {
+        setCurrentSong(songs[songs.length - 1]);
+      } else {
+        setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      }
+    }
+  };
+
   return (
     <div>
       <div className={s.player__time}>
@@ -52,13 +72,13 @@ export const Player = ({ currentSong, isPlay, setIsPlay, audioRef }) => {
         <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
       <div className={s.player__control}>
-        <ButtonPrev />
+        <ButtonPrev skipSong={skipSong} />
         {isPlay ? (
           <ButtonPause playHandler={playHandler} />
         ) : (
           <ButtonPlay playHandler={playHandler} />
         )}
-        <ButtonNext />
+        <ButtonNext skipSong={skipSong} />
       </div>
       <audio
         onTimeUpdate={onTimeUpdateHandler}

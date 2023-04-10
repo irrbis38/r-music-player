@@ -23,7 +23,9 @@ export const App = () => {
       />
       <Song currentSong={currentSong} />
       <Player
+        songs={songs}
         currentSong={currentSong}
+        setCurrentSong={setCurrentSong}
         isPlay={isPlay}
         setIsPlay={setIsPlay}
         audioRef={audioRef}
