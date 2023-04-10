@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ButtonPrev } from "../Buttons/ButtonPrev";
 import { ButtonPlay } from "../Buttons/ButtonPlay";
@@ -9,6 +9,7 @@ import s from "./Player.module.scss";
 
 export const Player = ({
   songs,
+  setSongs,
   currentSong,
   setCurrentSong,
   isPlay,
@@ -56,6 +57,24 @@ export const Player = ({
       }
     }
   };
+
+  // set class active to selected song
+  useEffect(() => {
+    const newSongs = songs.map((song) => {
+      if (currentSong.id === song.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
 
   return (
     <div>
