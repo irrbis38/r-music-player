@@ -18,10 +18,15 @@ export const Player = ({
   setIsPlay,
   audioRef,
 }) => {
+  // console.log(currentSong.color);
+
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
+    translateX: 0,
   });
+
+  console.log(songInfo);
 
   const playHandler = () => {
     if (isPlay) {
@@ -39,7 +44,8 @@ export const Player = ({
   const onTimeUpdateHandler = (e) => {
     const currentTime = e.target.currentTime;
     const duration = e.target.duration;
-    setSongInfo({ ...songInfo, currentTime, duration });
+    const translateX = Math.round((currentTime * 100) / duration);
+    setSongInfo({ ...songInfo, currentTime, duration, translateX });
   };
 
   const dragHandler = (e) => {
@@ -84,14 +90,25 @@ export const Player = ({
     <div>
       <div className={s.player__time}>
         <p>{getTime(songInfo.currentTime)}</p>
-        <input
-          onChange={dragHandler}
-          min={0}
-          max={songInfo.duration || 0}
-          value={songInfo.currentTime}
-          type="range"
-          className={s.player__range}
-        />
+        <div className={s.player__progress}>
+          <div className={s.player__bg}>
+            <div
+              className={s.player__inner}
+              style={{
+                transform: `translateX(${songInfo.translateX}%)`,
+                background: `linear-gradient(to left top, ${currentSong.color[0]}, ${currentSong.color[1]})`,
+              }}
+            ></div>
+          </div>
+          <input
+            onChange={dragHandler}
+            min={0}
+            max={songInfo.duration || 0}
+            value={songInfo.currentTime}
+            type="range"
+            className={s.player__range}
+          />
+        </div>
         <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
       <div className={s.player__control}>
