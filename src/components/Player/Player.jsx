@@ -5,8 +5,6 @@ import { ButtonPlay } from "../Buttons/ButtonPlay";
 import { ButtonPause } from "../Buttons/ButtonPause";
 import { ButtonNext } from "../Buttons/ButtonNext";
 
-import { playAudio } from "../../utils";
-
 import s from "./Player.module.scss";
 
 export const Player = ({
@@ -18,8 +16,6 @@ export const Player = ({
   setIsPlay,
   audioRef,
 }) => {
-  // console.log(currentSong.color);
-
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
@@ -53,19 +49,19 @@ export const Player = ({
     audioRef.current.currentTime = e.target.value;
   };
 
-  const skipSong = (direction) => {
+  const skipSong = async (direction) => {
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === "skip-to-next") {
-      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     } else {
       if ((currentIndex - 1) % songs.length < 0) {
-        setCurrentSong(songs[songs.length - 1]);
+        await setCurrentSong(songs[songs.length - 1]);
       } else {
-        setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+        await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       }
     }
     // autoplay if isPlay true
-    playAudio(isPlay, audioRef);
+    if (isPlay) audioRef.current.play();
   };
 
   // set class active to selected song

@@ -1,4 +1,4 @@
-import { playAudio } from "../../utils";
+// import { playAudio } from "../../utils";
 import s from "./LibrarySong.module.scss";
 
 export const LibrarySong = ({
@@ -10,9 +10,9 @@ export const LibrarySong = ({
   setSongs,
 }) => {
   const { id } = song;
-  const setSongHandler = () => {
+  const setSongHandler = async () => {
     const selectedSong = songs.filter((item) => id === item.id);
-    setCurrentSong(...selectedSong);
+    await setCurrentSong(...selectedSong);
 
     // set class active to selected song
     const newSongs = songs.map((song) => {
@@ -31,7 +31,7 @@ export const LibrarySong = ({
     setSongs(newSongs);
 
     // autoplay if isPlay true
-    playAudio(isPlay, audioRef);
+    if (isPlay) audioRef.current.play();
   };
   return (
     <div
