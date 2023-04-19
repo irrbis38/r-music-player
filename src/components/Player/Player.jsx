@@ -22,8 +22,6 @@ export const Player = ({
     translateX: 0,
   });
 
-  console.log(songInfo);
-
   const playHandler = () => {
     if (isPlay) {
       audioRef.current.pause();
@@ -43,6 +41,12 @@ export const Player = ({
     const translateX = Math.round((currentTime * 100) / duration);
     setSongInfo({ ...songInfo, currentTime, duration, translateX });
   };
+
+  // const onEndHandler = async () => {
+  //   const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+  //   await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+  //   if (isPlay) audioRef.current.play();
+  // };
 
   const dragHandler = (e) => {
     setSongInfo({ ...songInfo, currentTime: e.target.value });
@@ -117,6 +121,7 @@ export const Player = ({
         <ButtonNext skipSong={skipSong} />
       </div>
       <audio
+        // onEnded={onEndHandler}
         onTimeUpdate={onTimeUpdateHandler}
         onLoadedMetadata={onTimeUpdateHandler}
         src={currentSong.audio}
