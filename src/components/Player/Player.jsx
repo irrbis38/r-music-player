@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { ButtonPrev } from "../Buttons/ButtonPrev";
 import { ButtonPlay } from "../Buttons/ButtonPlay";
@@ -21,6 +21,24 @@ export const Player = ({
     duration: 0,
     translateX: 0,
   });
+
+  const activeLibraryHandler = (nextSongIndex) => {
+    const newSongs = songs.map((song) => {
+      if (currentSong.id === song.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+    // console.log("from useeffect");
+  };
 
   const playHandler = () => {
     if (isPlay) {
@@ -57,34 +75,19 @@ export const Player = ({
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === "skip-to-next") {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
     } else {
       if ((currentIndex - 1) % songs.length < 0) {
         await setCurrentSong(songs[songs.length - 1]);
+        activeLibraryHandler(songs[songs.length - 1]);
       } else {
         await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+        activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
       }
     }
     // autoplay if isPlay true
     if (isPlay) audioRef.current.play();
   };
-
-  // set class active to selected song
-  useEffect(() => {
-    const newSongs = songs.map((song) => {
-      if (currentSong.id === song.id) {
-        return {
-          ...song,
-          active: true,
-        };
-      } else {
-        return {
-          ...song,
-          active: false,
-        };
-      }
-    });
-    setSongs(newSongs);
-  }, [currentSong]);
 
   return (
     <div>
