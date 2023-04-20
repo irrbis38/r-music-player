@@ -32,3 +32,15 @@
   font-weight: 400;
   color: rgba(100, 100, 100, 0.7);
 }
+
+@media screen and (max-width: 768px) {
+  .song__cover {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .song__cover {
+    width: 170px;
+  }
+}

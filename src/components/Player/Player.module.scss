@@ -120,3 +120,20 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .player__time {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .player__time {
+    width: 100%;
+  }
+
+  .player__control {
+    width: 50%;
+    min-width: 210px;
+  }
+}

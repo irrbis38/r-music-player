@@ -16,7 +16,7 @@ export const App = () => {
   const [isLibraryVisible, setIsLibraryVisible] = useState(false);
   const audioRef = useRef(null);
   return (
-    <div className="App">
+    <div className={`app ${isLibraryVisible ? "library__active" : ""}`}>
       <Nav
         isLibraryVisible={isLibraryVisible}
         setIsLibraryVisible={setIsLibraryVisible}
