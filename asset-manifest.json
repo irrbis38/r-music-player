@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/r-music-player/static/css/main.b4dc070a.css",
+    "main.js": "/r-music-player/static/js/main.b09c5c74.js",
+    "index.html": "/r-music-player/index.html",
+    "main.b4dc070a.css.map": "/r-music-player/static/css/main.b4dc070a.css.map",
+    "main.b09c5c74.js.map": "/r-music-player/static/js/main.b09c5c74.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4dc070a.css",
+    "static/js/main.b09c5c74.js"
+  ]
+}
