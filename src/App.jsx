@@ -1,4 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+
+import { PlayerContext } from "./context/context";
 
 import { Nav } from "./components/Nav/Nav";
 import { Player } from "./components/Player/Player";
@@ -10,16 +12,17 @@ import chillHop from "./data";
 import "./app.scss";
 
 export const App = () => {
+  const { isLibraryVisible } = useContext(PlayerContext);
   const [songs, setSongs] = useState(() => chillHop());
   const [currentSong, setCurrentSong] = useState(songs[2]);
   const [isPlay, setIsPlay] = useState(false);
-  const [isLibraryVisible, setIsLibraryVisible] = useState(false);
+  // const [isLibraryVisible, setIsLibraryVisible] = useState(false);
   const audioRef = useRef(null);
   return (
     <div className={`app ${isLibraryVisible ? "library__active" : ""}`}>
       <Nav
         isLibraryVisible={isLibraryVisible}
-        setIsLibraryVisible={setIsLibraryVisible}
+        // setIsLibraryVisible={setIsLibraryVisible}
       />
       <Song currentSong={currentSong} />
       <Player
