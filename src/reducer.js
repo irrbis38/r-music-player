@@ -5,6 +5,11 @@ export const reducer = (state, { type, payload }) => {
         ...state,
         isLibraryVisible: !state.isLibraryVisible,
       };
+    case "TOGGLE_PLAY":
+      return {
+        ...state,
+        isPlay: !state.isPlay,
+      };
 
     default:
       return state;

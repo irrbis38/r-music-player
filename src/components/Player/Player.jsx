@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { ButtonPrev } from "../Buttons/ButtonPrev";
 import { ButtonPlay } from "../Buttons/ButtonPlay";
 import { ButtonPause } from "../Buttons/ButtonPause";
 import { ButtonNext } from "../Buttons/ButtonNext";
+
+import { PlayerContext } from "../../context/context";
 
 import s from "./Player.module.scss";
 
@@ -12,10 +14,9 @@ export const Player = ({
   setSongs,
   currentSong,
   setCurrentSong,
-  isPlay,
-  setIsPlay,
   audioRef,
 }) => {
+  const { isPlay, handlePlayToggle } = useContext(PlayerContext);
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
@@ -37,16 +38,15 @@ export const Player = ({
       }
     });
     setSongs(newSongs);
-    // console.log("from useeffect");
   };
 
   const playHandler = () => {
     if (isPlay) {
       audioRef.current.pause();
-      setIsPlay(!isPlay);
+      handlePlayToggle();
     } else {
       audioRef.current.play();
-      setIsPlay(!isPlay);
+      handlePlayToggle();
     }
   };
 

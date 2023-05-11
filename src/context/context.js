@@ -5,6 +5,7 @@ export const PlayerContext = createContext();
 
 const initialState = {
   isLibraryVisible: false,
+  isPlay: false,
 };
 
 export const ContextProvider = ({ children }) => {
@@ -12,6 +13,10 @@ export const ContextProvider = ({ children }) => {
 
   value.handleLibraryToggle = () => {
     dispatch({ type: "TOGGLE_LIBRARY_VISIBILITY" });
+  };
+
+  value.handlePlayToggle = () => {
+    dispatch({ type: "TOGGLE_PLAY" });
   };
 
   return (

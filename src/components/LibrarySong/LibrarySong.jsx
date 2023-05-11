@@ -1,4 +1,6 @@
 // import { playAudio } from "../../utils";
+import { PlayerContext } from "../../context/context";
+import { useContext } from "react";
 import s from "./LibrarySong.module.scss";
 
 export const LibrarySong = ({
@@ -6,9 +8,10 @@ export const LibrarySong = ({
   songs,
   setCurrentSong,
   audioRef,
-  isPlay,
+  // isPlay,
   setSongs,
 }) => {
+  const { isPlay } = useContext(PlayerContext);
   const { id } = song;
   const setSongHandler = async () => {
     const selectedSong = songs.filter((item) => id === item.id);
